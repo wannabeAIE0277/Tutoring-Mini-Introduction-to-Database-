@@ -2,11 +2,14 @@ DROP DATABASE IF EXISTS tutoring_mini;
 CREATE DATABASE tutoring_mini;
 USE tutoring_mini;
 SHOW DATABASES;
+
 CREATE TABLE subjects (
     subject_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE
 );
 DESCRIBE subjects;
+
+
 CREATE TABLE tutors (
     tutor_id INT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
@@ -17,6 +20,8 @@ CREATE TABLE tutors (
     FOREIGN KEY (subject_id)
         REFERENCES subjects(subject_id)
 );
+
+
 DESCRIBE tutors;
 SHOW CREATE TABLE tutors;
 CREATE TABLE students (
