@@ -2,11 +2,13 @@
 USE tutoring_mini;
 SELECT 
 	lesson_id,
-    student_id.full_name AS student_name,
-    tutor_id.full_name AS tutor_name,
+    students.full_name AS student_name,
+    tutors.full_name AS tutor_name,
     lesson_date,
     status
 FROM lessons
+JOIN students USING (student_id)
+JOIN tutors USING (tutor_id)
 WHERE status = 'Completed'
 	AND lesson_date >= '2025-01-01'
 	AND lesson_date < '2025-02-01';
@@ -33,9 +35,8 @@ SELECT DISTINCT
 FROM students s
 JOIN lessons l USING (student_id)
 LEFT JOIN lesson_reports r USING (lesson_id)
-WHERE 
-    l.status = 'Completed'
-    AND r.report_id IS NULL
+WHERE l.status = 'Completed'
+  AND r.report_id IS NULL
 ORDER BY s.student_id;
 
 
